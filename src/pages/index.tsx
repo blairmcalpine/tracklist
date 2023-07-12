@@ -1,9 +1,7 @@
+import AuthBar, { defaultImage } from "@/components/AuthBar";
 import { api } from "@/utils/api";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
-
-const defaultImage =
-  "https://i.scdn.co/image/ab6761610000517458efbed422ab46484466822b";
 
 export default function Home() {
   const { data: sessionData } = useSession();
@@ -15,38 +13,37 @@ export default function Home() {
     }
   );
 
-  if (!signedIn) {
+  if (sessionData?.user === null) {
     return <SignIn />;
   }
-  if (isLoading) {
+  if (isLoading || !signedIn) {
     return <TableSkeleton />;
   }
   if (isError) {
     return <div>Error</div>;
   }
 
-  const sortedArtists = data.sort((a, b) => b.popularity - a.popularity);
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <table>
-        <thead>
-          <tr>
-            <th className="border-b-[1px] pr-3 text-right font-thin text-gray">
-              #
-            </th>
-            <th className="border-b-[1px] text-gray"></th>
-            <th className="border-b-[1px] pl-3 text-left font-thin text-gray">
-              Artist
-            </th>
-            <th className="border-b-[1px] text-left font-thin text-gray">
-              Popularity
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedArtists.map(
-            ({ id, name, images, popularity, genres }, idx) => (
+    <>
+      <AuthBar />
+      <main className="flex min-h-screen flex-col items-center justify-center">
+        <table>
+          <thead>
+            <tr>
+              <th className="border-b-[1px] pr-3 text-right font-thin text-gray">
+                #
+              </th>
+              <th className="border-b-[1px] text-gray"></th>
+              <th className="border-b-[1px] pl-3 text-left font-thin text-gray">
+                Artist
+              </th>
+              <th className="border-b-[1px] text-left font-thin text-gray">
+                Popularity
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map(({ id, name, images, popularity, genres }, idx) => (
               <tr key={id}>
                 <td className="pr-3 text-right font-thin text-gray">
                   {idx + 1}
@@ -70,11 +67,11 @@ export default function Home() {
                 </td>
                 <td className="text-center">{popularity}</td>
               </tr>
-            )
-          )}
-        </tbody>
-      </table>
-    </main>
+            ))}
+          </tbody>
+        </table>
+      </main>
+    </>
   );
 }
 

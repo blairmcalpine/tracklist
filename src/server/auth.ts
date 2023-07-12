@@ -38,8 +38,8 @@ export const authOptions: NextAuthOptions = {
           refresh_token: account.refresh_token,
         };
       } else if (
-        typeof token.exp === "number" &&
-        token.exp > Date.now() / 1000
+        typeof token.expires_at === "number" &&
+        token.expires_at > Date.now() / 1000
       ) {
         return token;
       } else if (typeof token.refresh_token === "string") {

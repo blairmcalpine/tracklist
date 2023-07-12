@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 type SpotifyArtist = {
@@ -34,11 +35,19 @@ type TopSpotifyArtists = {
 export const spotifyRouter = createTRPCRouter({
   getTopArtists: protectedProcedure.query(async ({ ctx }) => {
     const { token } = ctx.session;
-    const response = await fetch("https://api.spotify.com/v1/me/top/artists", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://api.spotify.com/v1/me/top/artists?limit=50",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!response.ok)
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Error fetching top artists",
+      });
     const data = (await response.json()) as TopSpotifyArtists;
     return data.items;
   }),

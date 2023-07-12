@@ -17,3 +17,22 @@ body {
 		src: url("/fonts/CircularThin.otf") format("opentype");
 	}
 }
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #333;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #444;
+}
