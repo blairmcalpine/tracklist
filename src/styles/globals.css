@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply bg-primary text-white;
+}
+
+@layer base {
+	@font-face {
+		font-family: "Circular";
+		src: url("/fonts/Circular.otf") format("opentype");
+	}
+
+	@font-face {
+		font-family: "Circular-Thin";
+		src: url("/fonts/CircularThin.otf") format("opentype");
+	}
+}
