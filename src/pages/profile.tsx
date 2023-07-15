@@ -1,5 +1,8 @@
 import ArtistTable from "@/components/ArtistTable";
-import { defaultImage } from "@/components/AuthBar";
+import AuthBar, { defaultImage } from "@/components/AuthBar";
+import BackButton from "@/components/BackButton";
+import Container from "@/components/Container";
+import TrackTable from "@/components/TrackTable";
 import { api } from "@/utils/api";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
@@ -10,22 +13,35 @@ export default function ProfilePage() {
   const { data: sessionData } = useSession();
   const { push } = useRouter();
   const { data: artists } = api.spotify.getTopArtists.useQuery(undefined, {
-    enabled: Boolean(sessionData?.user),
+    enabled: Boolean(sessionData),
+  });
+  const { data: tracks } = api.spotify.getTopTracks.useQuery(undefined, {
+    enabled: Boolean(sessionData),
   });
 
-  if (sessionData?.user === null) return push("/");
+  if (sessionData === null) {
+    void push("/");
+    return null;
+  }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-5 p-5">
-      <Profile sessionData={sessionData} />
-      <div className="flex w-full gap-5">
-        <div className="flex w-full flex-col gap-3">
-          <h2 className="ml-5 text-2xl font-bold">Your Top Artists</h2>
-          <ArtistTable artists={artists} />
+    <>
+      <BackButton />
+      <AuthBar />
+      <Container className="max-h-screen flex-col items-center gap-5 p-5">
+        <Profile sessionData={sessionData} />
+        <div className="flex gap-5 overflow-hidden">
+          <div className="flex w-full flex-col gap-3">
+            <h2 className="ml-5 text-2xl font-bold">Your Top Artists</h2>
+            <ArtistTable artists={artists} />
+          </div>
+          <div className="flex w-full flex-col gap-3">
+            <h2 className="ml-5 text-2xl font-bold">Your Top Tracks</h2>
+            <TrackTable tracks={tracks} />
+          </div>
         </div>
-        <ArtistTable artists={undefined} />
-      </div>
-    </main>
+      </Container>
+    </>
   );
 }
 
