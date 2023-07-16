@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 export default function SearchPage() {
   const { query, isReady, push } = useRouter();
   const { data: sessionData } = useSession();
-  const { data } = api.spotify.search.useQuery(query.search as string, {
+  const { data } = api.search.search.useQuery(query.search as string, {
     enabled:
       isReady && typeof query.search === "string" && Boolean(sessionData),
   });

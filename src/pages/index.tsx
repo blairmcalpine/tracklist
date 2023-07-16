@@ -5,13 +5,9 @@ import { signIn, useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: sessionData } = useSession();
-  const signedIn = Boolean(sessionData);
 
   if (sessionData === null) {
     return <SignIn />;
-  }
-  if (!signedIn) {
-    return <div>Loading</div>;
   }
 
   return (

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useRef } from "react";
 
 type PlayerContext = {
   changeSource: (src: string | null) => void;

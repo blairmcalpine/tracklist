@@ -12,10 +12,7 @@ import { useRouter } from "next/router";
 export default function ProfilePage() {
   const { data: sessionData } = useSession();
   const { push } = useRouter();
-  const { data: artists } = api.spotify.getTopArtists.useQuery(undefined, {
-    enabled: Boolean(sessionData),
-  });
-  const { data: tracks } = api.spotify.getTopTracks.useQuery(undefined, {
+  const { data } = api.user.topItems.useQuery(undefined, {
     enabled: Boolean(sessionData),
   });
 
@@ -33,11 +30,11 @@ export default function ProfilePage() {
         <div className="flex gap-5 overflow-hidden">
           <div className="flex w-full flex-col gap-3">
             <h2 className="ml-5 text-2xl font-bold">Your Top Artists</h2>
-            <ArtistTable artists={artists} />
+            <ArtistTable artists={data?.artists} />
           </div>
           <div className="flex w-full flex-col gap-3">
             <h2 className="ml-5 text-2xl font-bold">Your Top Tracks</h2>
-            <TrackTable tracks={tracks} />
+            <TrackTable tracks={data?.tracks} />
           </div>
         </div>
       </Container>
@@ -55,17 +52,19 @@ function Profile({ sessionData }: { sessionData: Session | null }) {
             alt={sessionData.user.name ?? sessionData.user.id}
             width={192}
             height={192}
-            className="h-48 w-48 rounded-full object-cover"
+            className="h-48 w-48 rounded object-cover"
             priority
           />
           <p className="mt-3 text-2xl font-bold">
             {sessionData.user.name ?? "Spotify User"}
           </p>
-          <p className="text-xl font-thin text-gray">{sessionData.user.id}</p>
+          <p className="font-thinned text-xl text-gray">
+            {sessionData.user.id}
+          </p>
         </>
       ) : (
         <>
-          <div className="h-48 w-48 animate-pulse rounded-full bg-highlighted" />
+          <div className="h-48 w-48 animate-pulse rounded bg-highlighted" />
           <div className="mb-1 mt-4 h-6 w-48 animate-pulse rounded-full bg-highlighted" />
           <div className="my-1 h-5 w-36 animate-pulse rounded-full bg-highlighted" />
         </>

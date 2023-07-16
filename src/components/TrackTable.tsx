@@ -1,22 +1,25 @@
 import type { SpotifyTrack } from "@/types/spotify";
 import Image from "next/image";
+import Link from "next/link";
+import { Fragment } from "react";
 import { defaultImage } from "./AuthBar";
-import Table, { SortIcon, type SortDirection } from "./Table";
+import Table, { SortIcon, type SortDirection, type TableProps } from "./Table";
 
-export default function TrackTable({
-  tracks,
-  expectedRows,
-}: {
+type TrackTableProps = Omit<
+  TableProps<SpotifyTrack>,
+  "Row" | "SkeletonRow" | "items" | "HeaderRow"
+> & {
   tracks: SpotifyTrack[] | undefined;
-  expectedRows?: number;
-}) {
+};
+
+export default function TrackTable({ tracks, ...rest }: TrackTableProps) {
   return (
     <Table
       items={tracks}
       HeaderRow={HeaderRow}
       Row={Row}
       SkeletonRow={SkeletonRow}
-      expectedRows={expectedRows}
+      {...rest}
     />
   );
 }
@@ -30,11 +33,11 @@ function HeaderRow({
 }) {
   return (
     <tr>
-      <th className="sticky top-0 w-[4%] whitespace-nowrap border-b-[1px] bg-elevated pb-2 pt-5 text-right font-thin text-gray">
+      <th className="sticky top-0 w-[4%] whitespace-nowrap border-b-[1px] bg-elevated pb-2 pt-5 text-right font-thinned text-gray">
         #
       </th>
       <th className="sticky top-0 z-10 w-[82px] border-b-[1px] bg-elevated text-gray"></th>
-      <th className="sticky top-0 z-10 w-[34%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray">
+      <th className="sticky top-0 z-10 w-[34%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thinned text-gray">
         <button
           className="flex items-center gap-2 hover:text-white"
           onClick={() => sortColumn("name")}
@@ -43,7 +46,7 @@ function HeaderRow({
           <SortIcon sortType={sortType} category={"name"} />
         </button>
       </th>
-      <th className="sticky top-0 z-10 w-[34%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray">
+      <th className="sticky top-0 z-10 w-[34%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thinned text-gray">
         <button
           className="flex items-center gap-2 hover:text-white"
           onClick={() => sortColumn("album")}
@@ -52,7 +55,7 @@ function HeaderRow({
           <SortIcon sortType={sortType} category={"album"} />
         </button>
       </th>
-      <th className="sticky top-0 z-10 w-[14%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray">
+      <th className="sticky top-0 z-10 w-[14%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thinned text-gray">
         <button
           className="flex items-center gap-2 hover:text-white"
           onClick={() => sortColumn("duration_ms")}
@@ -61,7 +64,7 @@ function HeaderRow({
           <SortIcon sortType={sortType} category={"duration_ms"} />
         </button>
       </th>
-      <th className="sticky top-0 z-10 w-[14%] border-b-[1px] bg-elevated pb-2 pt-5 font-thin text-gray">
+      <th className="sticky top-0 z-10 w-[14%] border-b-[1px] bg-elevated pb-2 pt-5 font-thinned text-gray">
         <div className="flex justify-end">
           <button
             className="flex items-center justify-end gap-2 text-right hover:text-white"
@@ -83,13 +86,23 @@ function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
     2,
     "0"
   );
-  const artistString = artists.map((artist) => artist.name).join(", ");
+  const artistElements = artists.map((artist, idx) => (
+    <Fragment key={idx}>
+      <Link
+        className="hover:text-white hover:underline"
+        href={`/artist/${artist.id}`}
+      >
+        {artist.name}
+      </Link>
+      {idx !== artists.length - 1 && <span>, </span>}
+    </Fragment>
+  ));
   return (
     <tr className="group hover:bg-white hover:bg-opacity-10">
-      <td className="text-right font-thin text-gray">{idx + 1}</td>
+      <td className="text-right font-thinned text-gray">{idx + 1}</td>
       <td>
         <Image
-          className="mx-auto my-1.5 h-14 w-14"
+          className="mx-auto my-1.5 h-14 w-14 object-cover"
           src={album.images[0]?.url ?? defaultImage}
           alt={album.name}
           width={56}
@@ -105,18 +118,18 @@ function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
                 <p className="mt-0.5 text-2xs text-black">E</p>
               </div>
             )}
-            <p className="truncate text-sm font-thin capitalize text-gray">
-              {artistString}
-            </p>
+            <div className="truncate font-thinned text-sm capitalize text-gray">
+              {artistElements}
+            </div>
           </div>
         </div>
       </td>
-      <td className="truncate font-thin text-gray">{album.name}</td>
-      <td className="truncate font-thin text-gray">
+      <td className="truncate font-thinned text-gray">{album.name}</td>
+      <td className="truncate font-thinned text-gray">
         {mins}:{seconds}
       </td>
       <td className="text-right">
-        <p className="pr-3">{popularity}</p>
+        <p className="pr-3">{popularity}%</p>
       </td>
     </tr>
   );
@@ -125,7 +138,7 @@ function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
 function SkeletonRow({ idx }: { idx: number }) {
   return (
     <tr>
-      <td className="text-right font-thin text-gray">{idx + 1}</td>
+      <td className="text-right font-thinned text-gray">{idx + 1}</td>
       <td>
         <div className="m-auto h-14 w-14 animate-pulse rounded-full bg-highlighted" />
       </td>

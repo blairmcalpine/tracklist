@@ -13,7 +13,7 @@ export default function AuthBar() {
 
   return (
     <Menu
-      className="fixed right-5 top-5 z-10 flex flex-col items-end gap-2 shadow-lg"
+      className="fixed right-5 top-5 z-10 flex flex-col items-end gap-2"
       as="div"
     >
       <Menu.Button className="group flex items-center gap-3">
@@ -38,7 +38,7 @@ export default function AuthBar() {
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
       >
-        <Menu.Items className="flex flex-col rounded bg-elevated p-1">
+        <Menu.Items className="flex flex-col rounded bg-elevated p-1 shadow-lg">
           <Menu.Item>
             <Link
               className="rounded p-2 text-left hover:bg-highlighted"

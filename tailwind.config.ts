@@ -14,7 +14,7 @@ export default {
       },
       fontFamily: {
         sans: ["Circular", "sans-serif"],
-        thin: ["Circular-Thin", "sans-serif"],
+        thinned: ["Circular-Thin", "sans-serif"],
       },
       boxShadow: {
         greenBorder: "0 0 0 3px #1ed760",
