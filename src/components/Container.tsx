@@ -5,7 +5,7 @@ const Container = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
     return (
       <main
         ref={ref}
-        className={`flex min-h-screen w-full ${className ?? ""}`}
+        className={`flex min-h-[100dvh] w-full ${className ?? ""}`}
         {...rest}
       >
         {children}

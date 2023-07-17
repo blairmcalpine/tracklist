@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <AuthBar />
-      <Container className="items-center justify-center">
+      <Container className="items-center justify-center overflow-y-hidden md:overflow-y-auto">
         <SearchForm />
       </Container>
     </>
@@ -22,13 +22,13 @@ export default function Home() {
 
 function SignIn() {
   return (
-    <div className="flex h-screen items-center justify-center">
+    <Container className="items-center justify-center">
       <button
         className="rounded-full bg-green px-4 py-3 text-lg text-black transition-transform hover:scale-105"
         onClick={() => void signIn("spotify")}
       >
         Sign In With Spotify
       </button>
-    </div>
+    </Container>
   );
 }

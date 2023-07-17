@@ -21,7 +21,7 @@ export default function SearchPage() {
   return (
     <>
       <BackButton />
-      <Container className="max-h-screen flex-col items-center gap-5 p-5">
+      <Container className="max-h-[100dvh] flex-col items-center gap-5 p-5">
         <SearchForm />
         <ArtistTable artists={data} expectedRows={20} />
       </Container>

@@ -47,7 +47,7 @@ export default function ArtistPage() {
   }
   return (
     <>
-      <Container className="max-h-screen flex-col items-center justify-center gap-5 p-5">
+      <Container className="max-h-[100dvh] flex-col items-center justify-center gap-5 p-5">
         <ArtistProfile artist={artistData} />
         <TrackTable
           tracks={tracks}

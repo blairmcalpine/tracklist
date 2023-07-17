@@ -25,7 +25,7 @@ export default function ProfilePage() {
     <>
       <BackButton />
       <AuthBar />
-      <Container className="max-h-screen flex-col items-center gap-5 p-5">
+      <Container className="max-h-[100dvh] flex-col items-center gap-5 p-5">
         <Profile sessionData={sessionData} />
         <div className="flex gap-5 overflow-hidden">
           <div className="flex w-full flex-col gap-3">
