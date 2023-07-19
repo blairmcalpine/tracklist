@@ -1,15 +1,15 @@
 import { forwardRef, type HTMLProps } from "react";
 
-const Container = forwardRef<HTMLElement, HTMLProps<HTMLElement>>(
+const Container = forwardRef<HTMLDivElement, HTMLProps<HTMLDivElement>>(
   function Container({ children, className, ...rest }, ref) {
     return (
-      <main
+      <div
         ref={ref}
         className={`flex min-h-[100dvh] w-full ${className ?? ""}`}
         {...rest}
       >
         {children}
-      </main>
+      </div>
     );
   }
 );

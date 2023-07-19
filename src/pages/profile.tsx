@@ -59,9 +59,7 @@ function Profile({ sessionData }: { sessionData: Session | null }) {
           <p className="mt-3 text-2xl font-bold">
             {sessionData.user.name ?? "Spotify User"}
           </p>
-          <p className="font-thinned text-xl text-gray">
-            {sessionData.user.id}
-          </p>
+          <p className="text-xl font-thin text-gray">{sessionData.user.id}</p>
         </>
       ) : (
         <>

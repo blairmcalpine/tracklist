@@ -3,7 +3,16 @@ import { api } from "@/utils/api";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
+import localFont from "next/font/local";
 import Head from "next/head";
+
+const circular = localFont({
+  src: [
+    { path: "Circular.otf", weight: "400", style: "normal" },
+    { path: "CircularThin.otf", weight: "100", style: "normal" },
+  ],
+  variable: "--font-circular",
+});
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -38,7 +47,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <SessionProvider session={session}>
-        <Component {...pageProps} />
+        <main className={circular.className}>
+          <Component {...pageProps} />
+        </main>
       </SessionProvider>
     </>
   );

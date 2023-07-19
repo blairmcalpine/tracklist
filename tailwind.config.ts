@@ -13,8 +13,7 @@ export default {
         explicit: "#a0a0a0",
       },
       fontFamily: {
-        sans: ["Circular", "sans-serif"],
-        thinned: ["Circular-Thin", "sans-serif"],
+        sans: ["var(--font-circular)"],
       },
       boxShadow: {
         greenBorder: "0 0 0 3px #1ed760",

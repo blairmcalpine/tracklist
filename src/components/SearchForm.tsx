@@ -29,7 +29,7 @@ export default function SearchForm() {
     <form role="search" onSubmit={onSearch} className="relative">
       <MagnifyingGlass className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 fill-highlighted" />
       <input
-        className="w-96 rounded-full bg-white px-10 pb-[15px] pt-[17px] text-black outline-none  placeholder:font-thinned placeholder:text-highlighted"
+        className="w-96 rounded-full bg-white px-10 pb-[15px] pt-[17px] text-black outline-none  placeholder:font-thin placeholder:text-highlighted"
         placeholder="Search for an artist"
         maxLength={50}
         name="search"

@@ -32,11 +32,11 @@ function HeaderRow({
 }) {
   return (
     <tr>
-      <th className="sticky top-0 w-[4%] whitespace-nowrap border-b-[1px] bg-elevated pb-2 pt-5 text-right font-thinned text-gray">
+      <th className="sticky top-0 w-[4%] whitespace-nowrap border-b-[1px] bg-elevated pb-2 pt-5 text-right font-thin text-gray">
         #
       </th>
       <th className="sticky top-0 z-10 w-[82px] border-b-[1px] bg-elevated text-gray"></th>
-      <th className="sticky top-0 z-10 w-[70%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thinned text-gray">
+      <th className="sticky top-0 z-10 w-[70%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray">
         <button
           className="flex items-center gap-2 hover:text-white"
           onClick={() => sortColumn("name")}
@@ -45,7 +45,7 @@ function HeaderRow({
           <SortIcon sortType={sortType} category={"name"} />
         </button>
       </th>
-      <th className="sticky top-0 z-10 w-[30%] border-b-[1px] bg-elevated pb-2 pt-5 font-thinned text-gray">
+      <th className="sticky top-0 z-10 w-[30%] border-b-[1px] bg-elevated pb-2 pt-5 font-thin text-gray">
         <div className="flex justify-end">
           <button
             className="flex items-center justify-end gap-2 text-right hover:text-white"
@@ -68,7 +68,7 @@ function Row({ item, idx }: { item: SpotifyArtist; idx: number }) {
       className="cursor-pointer hover:bg-white hover:bg-opacity-10"
       onClick={() => void push(`/artist/${id}`)}
     >
-      <td className="text-right font-thinned text-gray">{idx + 1}</td>
+      <td className="text-right font-thin text-gray">{idx + 1}</td>
       <td>
         <Image
           className="mx-auto my-1.5 h-14 w-14 object-cover"
@@ -81,9 +81,7 @@ function Row({ item, idx }: { item: SpotifyArtist; idx: number }) {
       <td className="whitespace-nowrap">
         <div className="flex flex-col">
           <p>{name}</p>
-          <p className="font-thinned text-sm capitalize text-gray">
-            {genres[0]}
-          </p>
+          <p className="text-sm font-thin capitalize text-gray">{genres[0]}</p>
         </div>
       </td>
       <td className="text-right">
@@ -96,7 +94,7 @@ function Row({ item, idx }: { item: SpotifyArtist; idx: number }) {
 function SkeletonRow({ idx }: { idx: number }) {
   return (
     <tr>
-      <td className="text-right font-thinned text-gray">{idx + 1}</td>
+      <td className="text-right font-thin text-gray">{idx + 1}</td>
       <td>
         <div className="m-auto h-14 w-14 animate-pulse rounded-full bg-highlighted" />
       </td>
