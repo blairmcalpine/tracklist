@@ -1,32 +1,37 @@
-import { createContext, useContext, useRef } from "react";
+import type { SpotifyTrack } from "@/types/spotify";
+import React, { createContext, useContext, useState } from "react";
 
 type PlayerContext = {
-  changeSource: (src: string | null) => void;
+  togglePlayback: (track?: SpotifyTrack) => void;
+  isPlaying: boolean;
+  track: SpotifyTrack | null;
 };
 
-const PlayerContext = createContext<PlayerContext>({
-  changeSource: () => {
-    void 0;
-  },
-});
+const PlayerContext = createContext<PlayerContext>({} as PlayerContext);
 
 export function PlayerContextProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const playerRef = useRef<HTMLAudioElement | null>(null);
-  function changeSource(src: string | null) {
-    if (!playerRef.current) return;
-    if (src === null) return void playerRef.current.pause();
-    playerRef.current.src = src;
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [track, setTrack] = useState<SpotifyTrack | null>(null);
+  function togglePlayback(newTrack?: SpotifyTrack) {
+    if (newTrack) {
+      if (newTrack.id === track?.id) setIsPlaying(!isPlaying);
+      else {
+        setTrack(newTrack);
+        setIsPlaying(true);
+      }
+    } else if (track) setIsPlaying(!isPlaying);
   }
   return (
     <>
-      <audio ref={playerRef} autoPlay />
       <PlayerContext.Provider
         value={{
-          changeSource,
+          togglePlayback,
+          isPlaying,
+          track,
         }}
       >
         {children}

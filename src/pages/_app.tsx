@@ -1,3 +1,4 @@
+import { PlayerContextProvider } from "@/hooks/usePlayer";
 import "@/styles/globals.css";
 import { api } from "@/utils/api";
 import { type Session } from "next-auth";
@@ -48,7 +49,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
       <SessionProvider session={session}>
         <main className={circular.className}>
-          <Component {...pageProps} />
+          <PlayerContextProvider>
+            <Component {...pageProps} />
+          </PlayerContextProvider>
         </main>
       </SessionProvider>
     </>

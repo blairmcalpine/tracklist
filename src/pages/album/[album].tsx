@@ -1,6 +1,8 @@
+import ArtistListText from "@/components/ArtistListText";
 import AuthBar, { defaultImage } from "@/components/AuthBar";
 import BackButton from "@/components/BackButton";
 import Container from "@/components/Container";
+import Player from "@/components/Player";
 import SearchButton from "@/components/SearchButton";
 import TrackTable from "@/components/TrackTable";
 import type { SpotifyAlbum } from "@/types/spotify";
@@ -33,6 +35,7 @@ export default function AlbumPage() {
       <Container className="max-h-[100dvh] flex-col items-center justify-center gap-5 p-5">
         <AlbumDisplay album={albumData?.album} />
         <TrackTable tracks={albumData?.tracks} />
+        <Player />
       </Container>
     </>
   );
@@ -75,18 +78,8 @@ function AlbumDisplay({ album }: { album: SpotifyAlbum | undefined }) {
       <div className="flex flex-col justify-center gap-4 truncate">
         <h1 className="truncate text-8xl font-extrabold">{name}</h1>
         <div className="text-3xl text-gray">
-          {artists.map((artist, idx) => (
-            <Fragment key={idx}>
-              <Link
-                className="hover:text-white hover:underline"
-                href={`/artist/${artist.id}`}
-              >
-                {artist.name}
-              </Link>
-              <span> ·&nbsp;</span>
-            </Fragment>
-          ))}
-          <span>{release_date.split("-")[0]} ·&nbsp;</span>
+          <ArtistListText artists={artists} separator=" · " />
+          <span> · {release_date.split("-")[0]} ·&nbsp;</span>
           <span>{total_tracks} Tracks</span>
         </div>
         <div className="text-3xl text-gray">

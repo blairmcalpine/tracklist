@@ -1,7 +1,10 @@
+import usePlayer from "@/hooks/usePlayer";
+import Pause from "@/icons/Pause";
+import Play from "@/icons/Play";
 import type { SpotifyTrack } from "@/types/spotify";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
+import ArtistListText from "./ArtistListText";
 import { defaultImage } from "./AuthBar";
 import Table, { SortIcon, type SortDirection, type TableProps } from "./Table";
 
@@ -80,26 +83,31 @@ function HeaderRow({
 }
 
 function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
-  const { name, album, popularity, explicit, artists, duration_ms } = item;
+  const { togglePlayback, track, isPlaying } = usePlayer();
+  const { name, album, popularity, explicit, artists, duration_ms, id } = item;
   const mins = Math.floor(duration_ms / 60000);
   const seconds = String(((duration_ms % 60000) / 1000).toFixed(0)).padStart(
     2,
     "0"
   );
-  const artistElements = artists.map((artist, idx) => (
-    <Fragment key={idx}>
-      <Link
-        className="hover:text-white hover:underline"
-        href={`/artist/${artist.id}`}
-      >
-        {artist.name}
-      </Link>
-      {idx !== artists.length - 1 && <span>, </span>}
-    </Fragment>
-  ));
+  const artistNames = artists.map((artist) => artist.name).join(", ");
   return (
     <tr className="group hover:bg-white hover:bg-opacity-10">
-      <td className="text-right font-thin text-gray">{idx + 1}</td>
+      <td onClick={() => togglePlayback(item)}>
+        <button
+          className="flex w-full justify-end"
+          title={`Preview ${name} by ${artistNames}`}
+        >
+          {track?.id === id && isPlaying ? (
+            <Pause className="hidden h-3 w-3 group-hover:block" fill="white" />
+          ) : (
+            <Play className="hidden h-3 w-3 group-hover:block" fill="white" />
+          )}
+          <span className="block w-full text-right font-thin text-gray group-hover:hidden">
+            {idx + 1}
+          </span>
+        </button>
+      </td>
       <td>
         <Image
           className="mx-auto my-1.5 h-14 w-14 object-cover"
@@ -118,8 +126,8 @@ function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
                 <p className="mt-0.5 text-2xs text-black">E</p>
               </div>
             )}
-            <div className="truncate text-sm font-thin capitalize text-gray">
-              {artistElements}
+            <div className="truncate text-sm font-thin text-gray">
+              <ArtistListText artists={artists} />
             </div>
           </div>
         </div>

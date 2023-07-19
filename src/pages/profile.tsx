@@ -2,6 +2,7 @@ import ArtistTable from "@/components/ArtistTable";
 import AuthBar, { defaultImage } from "@/components/AuthBar";
 import BackButton from "@/components/BackButton";
 import Container from "@/components/Container";
+import Player from "@/components/Player";
 import SearchButton from "@/components/SearchButton";
 import TrackTable from "@/components/TrackTable";
 import { api } from "@/utils/api";
@@ -38,6 +39,7 @@ export default function ProfilePage() {
             <TrackTable tracks={data?.tracks} />
           </div>
         </div>
+        <Player />
       </Container>
     </>
   );

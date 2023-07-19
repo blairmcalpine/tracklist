@@ -1,6 +1,7 @@
 import AuthBar, { defaultImage } from "@/components/AuthBar";
 import BackButton from "@/components/BackButton";
 import Container from "@/components/Container";
+import Player from "@/components/Player";
 import SearchButton from "@/components/SearchButton";
 import TrackTable from "@/components/TrackTable";
 import type { SpotifyArtist } from "@/types/spotify";
@@ -59,6 +60,7 @@ export default function ArtistPage() {
           }}
           loadingMore={isFetchingNextPage}
         />
+        <Player />
       </Container>
     </>
   );
