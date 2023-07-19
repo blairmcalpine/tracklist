@@ -1,8 +1,8 @@
 import type { SpotifyTrack } from "@/types/spotify";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 
 type PlayerContext = {
-  togglePlayback: (track?: SpotifyTrack) => void;
+  togglePlayback: (track?: SpotifyTrack | null) => void;
   isPlaying: boolean;
   track: SpotifyTrack | null;
 };
@@ -16,15 +16,21 @@ export function PlayerContextProvider({
 }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [track, setTrack] = useState<SpotifyTrack | null>(null);
-  function togglePlayback(newTrack?: SpotifyTrack) {
-    if (newTrack) {
-      if (newTrack.id === track?.id) setIsPlaying(!isPlaying);
-      else {
-        setTrack(newTrack);
-        setIsPlaying(true);
-      }
-    } else if (track) setIsPlaying(!isPlaying);
-  }
+  const togglePlayback = useCallback(
+    (newTrack?: SpotifyTrack | null) => {
+      if (newTrack) {
+        if (newTrack.id === track?.id) setIsPlaying(!isPlaying);
+        else {
+          setTrack(newTrack);
+          setIsPlaying(true);
+        }
+      } else if (newTrack === null) {
+        setTrack(null);
+        setIsPlaying(false);
+      } else if (track) setIsPlaying(!isPlaying);
+    },
+    [track, isPlaying]
+  );
   return (
     <>
       <PlayerContext.Provider
