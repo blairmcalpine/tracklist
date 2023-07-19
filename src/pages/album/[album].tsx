@@ -9,7 +9,6 @@ import type { SpotifyAlbum } from "@/types/spotify";
 import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
 
