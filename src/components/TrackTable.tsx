@@ -124,7 +124,18 @@ function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
           </div>
         </div>
       </td>
-      <td className="truncate font-thinned text-gray">{album.name}</td>
+      <td className="truncate font-thinned text-gray">
+        {album.album_type.toLowerCase() === "album" ? (
+          <Link
+            href={`/album/${album.id}`}
+            className="hover:text-white hover:underline"
+          >
+            {album.name}
+          </Link>
+        ) : (
+          album.name
+        )}
+      </td>
       <td className="truncate font-thinned text-gray">
         {mins}:{seconds}
       </td>

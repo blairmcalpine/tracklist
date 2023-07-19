@@ -2,6 +2,7 @@ import ArtistTable from "@/components/ArtistTable";
 import AuthBar, { defaultImage } from "@/components/AuthBar";
 import BackButton from "@/components/BackButton";
 import Container from "@/components/Container";
+import SearchButton from "@/components/SearchButton";
 import TrackTable from "@/components/TrackTable";
 import { api } from "@/utils/api";
 import type { Session } from "next-auth";
@@ -18,12 +19,12 @@ export default function ProfilePage() {
 
   if (sessionData === null) {
     void push("/");
-    return null;
   }
 
   return (
     <>
       <BackButton />
+      <SearchButton />
       <AuthBar />
       <Container className="max-h-[100dvh] flex-col items-center gap-5 p-5">
         <Profile sessionData={sessionData} />

@@ -16,7 +16,6 @@ export default function SearchPage() {
   });
   if (sessionData === null) {
     void push("/");
-    return null;
   }
   return (
     <>

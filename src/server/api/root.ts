@@ -1,5 +1,6 @@
 import { createTRPCRouter } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
+import { albumRouter } from "./routers/album";
 import { artistRouter } from "./routers/artist";
 import { searchRouter } from "./routers/search";
 import { userRouter } from "./routers/user";
@@ -13,6 +14,7 @@ export const appRouter = createTRPCRouter({
   user: userRouter,
   artist: artistRouter,
   search: searchRouter,
+  album: albumRouter,
 });
 
 // export type definition of API
