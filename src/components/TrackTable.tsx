@@ -95,7 +95,7 @@ function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
     <tr className="group hover:bg-white hover:bg-opacity-10">
       <td onClick={() => togglePlayback(item)}>
         <button
-          className="flex w-full justify-end"
+          className="ml-auto flex justify-end"
           title={`Preview ${name} by ${artistNames}`}
         >
           {track?.id === id && isPlaying ? (

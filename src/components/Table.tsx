@@ -99,7 +99,7 @@ export default function Table<Item>({
 
   return (
     <div
-      className="flex w-full flex-1 flex-col overflow-y-auto rounded bg-elevated px-5"
+      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded bg-elevated px-5"
       onScroll={onScrollEnd ? onScroll : undefined}
     >
       <table className="w-full table-fixed border-separate border-spacing-0">
@@ -124,7 +124,7 @@ export default function Table<Item>({
         </tbody>
       </table>
       {loadingMore && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div className="fixed bottom-[7rem] left-1/2 -translate-x-1/2">
           <svg
             aria-hidden="true"
             className="h-10 w-10 animate-spin fill-green text-black"
