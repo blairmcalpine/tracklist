@@ -1,28 +1,40 @@
-# Create T3 App
+# TrackList
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is a [T3 Stack](https://create.t3.gg/) project that leverages the [Spotify Web API](https://developer.spotify.com/). TrackList aims to provide Spotify users enhanced information about their Spotify profile and various Spotify artists.
 
-## What's next? How do I make an app with this?
+## Features
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- View your top artists and tracks
+- Search for artists
+- View a list of all of an artist's songs
+- Sort an artist's songs by popularity, name, or release date
+- View an album's tracklist
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## The Stack
+
+TrackList uses the following technologies:
 
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
 
-## Learn More
+## Local Deployment
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+To deploy a version of TrackList for yourself, create a [Spotify application](https://developer.spotify.com/dashboard/create) and add the application client ID and client secret to a `.env` file. You will also need NEXTAUTH_URL AND NEXTAUTH_SECRET environment variables. Your `.env` file should look like this:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+```bash
+SPOTIFY_CLIENT_ID=your-client-id
+SPOTIFY_CLIENT_SECRET=your-client-secret
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret
+```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+Then, run the following commands:
 
-## How do I deploy this?
+```bash
+npm install
+npm run dev
+```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Visiting [http://localhost:3000](http://localhost:3000) will show you the TrackList homepage.
