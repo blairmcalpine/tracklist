@@ -141,7 +141,7 @@ function TrackInfo({ track }: { track: SpotifyTrack | null }) {
   if (!track) {
     return (
       <div className="flex basis-2/5 items-center gap-3.5">
-        <div className="h-14 w-14 rounded bg-highlighted" />
+        <div className="hidden h-14 w-14 rounded bg-highlighted md:block" />
         <div className="flex w-full flex-col gap-2">
           <div className="h-3.5 w-1/2 rounded-full bg-highlighted" />
           <div className="h-3 w-1/3 rounded-full bg-highlighted" />
