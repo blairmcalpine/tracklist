@@ -13,7 +13,7 @@ export default function AuthBar() {
 
   return (
     <Menu
-      className="fixed right-5 top-5 z-10 flex flex-col items-end gap-2"
+      className="fixed right-5 top-5 z-20 flex flex-col items-end gap-2"
       as="div"
     >
       <Menu.Button className="group flex items-center gap-3">
