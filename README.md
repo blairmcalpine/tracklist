@@ -1,4 +1,6 @@
-![android-chrome-192x192](https://github.com/blairmcalpine/tracklist/assets/97198784/b9414034-39c9-42f0-b173-d17aebca6c54)
+<p align="center">
+  <img src="https://github.com/blairmcalpine/tracklist/assets/97198784/b9414034-39c9-42f0-b173-d17aebca6c54" alt="TrackList logo"/>
+</p>
 
 # TrackList
 
