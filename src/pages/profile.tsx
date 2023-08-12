@@ -27,14 +27,14 @@ export default function ProfilePage() {
       <BackButton />
       <SearchButton />
       <AuthBar />
-      <Container className="max-h-[100dvh] flex-col items-center gap-5 p-5">
+      <Container className="max-h-[100dvh] flex-col items-center gap-5 p-3 pt-20 md:p-5 md:pt-5">
         <Profile sessionData={sessionData} />
-        <div className="flex gap-5 overflow-hidden">
-          <div className="flex w-full flex-col gap-3">
+        <div className="flex w-full flex-col gap-5 overflow-y-hidden md:flex-row">
+          <div className="flex w-full flex-col gap-3 overflow-y-hidden">
             <h2 className="ml-5 text-2xl font-bold">Your Top Artists</h2>
             <ArtistTable artists={data?.artists} />
           </div>
-          <div className="flex w-full flex-col gap-3">
+          <div className="flex w-full flex-col gap-3 overflow-y-hidden">
             <h2 className="ml-5 text-2xl font-bold">Your Top Tracks</h2>
             <TrackTable tracks={data?.tracks} />
           </div>
@@ -47,7 +47,7 @@ export default function ProfilePage() {
 
 function Profile({ sessionData }: { sessionData: Session | null }) {
   return (
-    <div className="flex flex-col gap-1 rounded bg-elevated p-5">
+    <div className="hidden flex-col gap-1 rounded bg-elevated p-5 md:flex">
       {sessionData?.user ? (
         <>
           <Image

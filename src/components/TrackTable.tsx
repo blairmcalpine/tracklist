@@ -36,11 +36,11 @@ function HeaderRow({
 }) {
   return (
     <tr>
-      <th className="sticky top-0 w-[4%] whitespace-nowrap border-b-[1px] bg-elevated pb-2 pt-5 text-right font-thin text-gray">
+      <th className="sticky top-0 w-[10%] whitespace-nowrap border-b-[1px] bg-elevated pb-2 pt-5 text-right font-thin text-gray md:w-[4%]">
         #
       </th>
       <th className="sticky top-0 z-10 w-[82px] border-b-[1px] bg-elevated text-gray"></th>
-      <th className="sticky top-0 z-10 w-[34%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray">
+      <th className="sticky top-0 z-10 w-full border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray md:w-[34%]">
         <button
           className="flex items-center gap-2 hover:text-white"
           onClick={() => sortColumn("name")}
@@ -49,7 +49,7 @@ function HeaderRow({
           <SortIcon sortType={sortType} category={"name"} />
         </button>
       </th>
-      <th className="sticky top-0 z-10 w-[34%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray">
+      <th className="sticky top-0 z-10 hidden w-[34%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray md:table-cell">
         <button
           className="flex items-center gap-2 hover:text-white"
           onClick={() => sortColumn("album")}
@@ -58,7 +58,7 @@ function HeaderRow({
           <SortIcon sortType={sortType} category={"album"} />
         </button>
       </th>
-      <th className="sticky top-0 z-10 w-[14%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray">
+      <th className="sticky top-0 z-10 hidden w-[14%] border-b-[1px] bg-elevated pb-2 pt-5 text-left font-thin text-gray md:table-cell">
         <button
           className="flex items-center gap-2 hover:text-white"
           onClick={() => sortColumn("duration_ms")}
@@ -67,7 +67,7 @@ function HeaderRow({
           <SortIcon sortType={sortType} category={"duration_ms"} />
         </button>
       </th>
-      <th className="sticky top-0 z-10 w-[14%] border-b-[1px] bg-elevated pb-2 pt-5 font-thin text-gray">
+      <th className="sticky top-0 z-10 w-1/5 border-b-[1px] bg-elevated pb-2 pt-5 font-thin text-gray md:w-[14%]">
         <div className="flex justify-end">
           <button
             className="flex items-center justify-end gap-2 text-right hover:text-white"
@@ -132,7 +132,7 @@ function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
           </div>
         </div>
       </td>
-      <td className="truncate font-thin text-gray">
+      <td className="hidden truncate font-thin text-gray md:table-cell">
         {album.album_type.toLowerCase() === "album" ? (
           <Link
             href={`/album/${album.id}`}
@@ -144,11 +144,11 @@ function Row({ item, idx }: { item: SpotifyTrack; idx: number }) {
           album.name
         )}
       </td>
-      <td className="truncate font-thin text-gray">
+      <td className="hidden truncate font-thin text-gray md:table-cell">
         {mins}:{seconds}
       </td>
       <td className="text-right">
-        <p className="pr-3">{popularity}%</p>
+        <p className="md:pr-3">{popularity}%</p>
       </td>
     </tr>
   );
@@ -167,10 +167,10 @@ function SkeletonRow({ idx }: { idx: number }) {
           <div className="my-[3px] h-3.5 w-[95%] animate-pulse rounded-full bg-highlighted" />
         </div>
       </td>
-      <td>
+      <td className="hidden md:table-cell">
         <div className="h-4 w-[70%] animate-pulse rounded-full bg-highlighted" />
       </td>
-      <td>
+      <td className="hidden md:table-cell">
         <div className="h-4 w-[50%] animate-pulse rounded-full bg-highlighted" />
       </td>
       <td>

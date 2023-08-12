@@ -99,7 +99,7 @@ export default function Table<Item>({
 
   return (
     <div
-      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded bg-elevated px-5"
+      className="relative flex w-full flex-1 flex-col overflow-y-auto rounded bg-elevated px-2 md:px-5"
       onScroll={onScrollEnd ? onScroll : undefined}
     >
       <table className="w-full table-fixed border-separate border-spacing-0">

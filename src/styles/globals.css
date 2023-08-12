@@ -43,34 +43,3 @@ body {
 ::-moz-scrollbar-thumb:hover {
 	background: #444;
 }
-
-input[type=range] {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	height: 12px;
-	width: 12px;
-	@apply bg-green;
-	border-radius: 50%;
-}
-
-input[type="range"]::-webkit-slider-thumb:hover {
-	background: white;
-}
-
-input[type="range"]::-moz-slider-thumb {
-	-moz-appearance: none;
-	appearance: none;
-	height: 12px;
-	width: 12px;
-	@apply bg-green;
-	border-radius: 50%;
-}
-
-input[type="range"]::-moz-slider-thumb:hover {
-	background: white;
-}

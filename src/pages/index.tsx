@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <AuthBar />
-      <Container className="items-center justify-center overflow-y-hidden md:overflow-y-auto">
+      <Container className="items-center justify-center overflow-y-hidden px-3 md:overflow-y-auto">
         <SearchForm />
       </Container>
     </>
@@ -22,7 +22,7 @@ export default function Home() {
 
 function SignIn() {
   return (
-    <Container className="items-center justify-center">
+    <Container className="items-center justify-center px-3">
       <button
         className="rounded-full bg-green px-4 py-3 text-lg text-black transition-transform hover:scale-105"
         onClick={() => void signIn("spotify")}

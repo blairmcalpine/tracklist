@@ -32,7 +32,7 @@ function HeaderRow({
 }) {
   return (
     <tr>
-      <th className="sticky top-0 w-[4%] whitespace-nowrap border-b-[1px] bg-elevated pb-2 pt-5 text-right font-thin text-gray">
+      <th className="sticky top-0 w-[10%] whitespace-nowrap border-b-[1px] bg-elevated pb-2 pt-5 text-right font-thin text-gray md:w-[4%]">
         #
       </th>
       <th className="sticky top-0 z-10 w-[82px] border-b-[1px] bg-elevated text-gray"></th>
@@ -85,7 +85,7 @@ function Row({ item, idx }: { item: SpotifyArtist; idx: number }) {
         </div>
       </td>
       <td className="text-right">
-        <p className="pr-3">{popularity}%</p>
+        <p className="md:pr-3">{popularity}%</p>
       </td>
     </tr>
   );

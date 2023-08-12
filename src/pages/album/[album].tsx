@@ -31,7 +31,7 @@ export default function AlbumPage() {
       <BackButton />
       <SearchButton />
       <AuthBar />
-      <Container className="max-h-[100dvh] flex-col items-center justify-center gap-5 p-5">
+      <Container className="max-h-[100dvh] flex-col items-center justify-center gap-5 p-3 pt-20 md:p-5 md:pt-5">
         <AlbumDisplay album={albumData?.album} />
         <TrackTable tracks={albumData?.tracks} />
         <Player />
@@ -43,13 +43,13 @@ export default function AlbumPage() {
 function AlbumDisplay({ album }: { album: SpotifyAlbum | undefined }) {
   if (!album)
     return (
-      <div className="flex h-[30vh] min-h-[30vh] w-[60%] gap-5 rounded bg-elevated p-5">
-        <div className="relative aspect-square h-full animate-pulse rounded bg-highlighted" />
-        <div className="flex w-full flex-col justify-center gap-8">
-          <div className="h-20 w-full animate-pulse rounded-full bg-highlighted" />
-          <div className="h-[30px] w-[80%] animate-pulse rounded-full bg-highlighted" />
-          <div className="h-[30px] w-[20%] animate-pulse rounded-full bg-highlighted" />
-          <div className="w-[5 0%]	h-4 animate-pulse rounded-full bg-highlighted" />
+      <div className="flex w-full gap-5 rounded bg-elevated p-5 md:h-[30vh] md:min-h-[30vh] md:w-[60%]">
+        <div className="relative hidden aspect-square h-full animate-pulse rounded bg-highlighted md:block" />
+        <div className="flex w-full flex-col justify-center gap-4">
+          <div className="h-24 w-full animate-pulse rounded-full bg-highlighted" />
+          <div className="h-[36px] w-[80%] animate-pulse rounded-full bg-highlighted" />
+          <div className="h-[36px] w-[20%] animate-pulse rounded-full bg-highlighted" />
+          <div className="h-6	w-[50%] animate-pulse rounded-full bg-highlighted" />
         </div>
       </div>
     );
@@ -63,8 +63,8 @@ function AlbumDisplay({ album }: { album: SpotifyAlbum | undefined }) {
     artists,
   } = album;
   return (
-    <div className="flex h-[30vh] min-h-[30vh] min-w-[50%] max-w-[90%] gap-5 rounded bg-elevated p-5">
-      <div className="relative aspect-square h-full">
+    <div className="flex w-full gap-5 rounded bg-elevated p-5 md:h-[30vh] md:min-h-[30vh] md:w-fit md:min-w-[50%] md:max-w-[90%]">
+      <div className="relative hidden aspect-square h-full md:block">
         <Image
           className="object-cover"
           src={images[0]?.url ?? defaultImage}
