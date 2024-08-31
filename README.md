@@ -1,6 +1,11 @@
+<p align="center">
+  <img src="https://github.com/blairmcalpine/tracklist/assets/97198784/b9414034-39c9-42f0-b173-d17aebca6c54" alt="TrackList logo"/>
+</p>
+
 # TrackList
 
 This is a [T3 Stack](https://create.t3.gg/) project that leverages the [Spotify Web API](https://developer.spotify.com/). TrackList aims to provide Spotify users enhanced information about their Spotify profile and various Spotify artists.
+
 
 ## Features
 
