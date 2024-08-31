@@ -4,9 +4,13 @@ import SearchForm from "@/components/SearchForm";
 import { signIn, useSession } from "next-auth/react";
 
 export default function Home() {
-  const { data: sessionData } = useSession();
+  const { status } = useSession();
 
-  if (sessionData === null) {
+  if (status === "loading") {
+    return null;
+  }
+
+  if (status === "unauthenticated") {
     return <SignIn />;
   }
 
